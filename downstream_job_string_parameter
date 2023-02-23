@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+    parameters{
+        string(name :'warfilelocation', defaultValue:'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\job3\\gameoflife-web\\target',description:'deploying')
+        string(name :'deploylocation', defaultValue:'C:\\softwares\\apache-tomcat-8.5.85-windows-x64\\apache-tomcat-8.5.85\\webapps', description:'deployed successfully')   
+
+        
+    }
+    stages{
+        stage('deploying the application into the tomcat apploication server')
+        {
+            steps{
+            
+             bat "xcopy /y ${params.warfilelocation}"
+             bat  "cd ${params.deploylocation}"
+
+            }
+            
+        }
+    }
+    post{
+        success{
+            bat 'echo successfully deployed'
+        }
+    }
+}

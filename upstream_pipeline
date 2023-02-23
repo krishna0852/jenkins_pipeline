@@ -1,0 +1,22 @@
+pipeline{
+    agent any
+    
+    stages{
+       stage('checkout'){
+           steps{
+                git 'https://github.com/krishna0852/game-of-life-1.git'
+           }
+       } 
+       stage("build"){
+           steps{
+               bat 'mvn package'
+           }
+       }
+    
+    }
+    post{
+        success{
+        build job:'job4'
+        }
+    }
+}

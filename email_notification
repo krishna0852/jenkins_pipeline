@@ -1,0 +1,28 @@
+pipeline{
+    agent any
+    
+    stages{
+        stage('checkout'){
+            steps{
+               git 'https://github.com/krishna0852/game-of-life-1.git' 
+            }
+        }
+        stage('build'){
+            steps{
+                bat 'mvn package'
+            }
+        }
+        
+    }
+    post{
+       success{
+           mail  subject: 'build_success', 
+           from:'project_XYZ-LEAD',
+           to: 'vtu10407@veltechuniv.edu.in', 
+           cc: 'krishnatejapalla@outlook.com', 
+           body: 'build successful ..need to deploy into the server ',
+           replyTo:''
+          
+       }
+    }
+}

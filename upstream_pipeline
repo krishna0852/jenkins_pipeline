@@ -17,7 +17,7 @@ pipeline
     }
     post{
         success{
-        build job:'job4'
+        build job:'downstream_job_string_parameter'
         }
     }
 }

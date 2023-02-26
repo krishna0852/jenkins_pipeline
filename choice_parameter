@@ -1,0 +1,24 @@
+pipeline{
+    agent any
+    parameters{
+        choice(name:'choice',choices:['dev','stage','pre-prod'],description:'select the any of the branch to generate packages')
+    }
+    stages{
+         stage('select the environment'){
+            steps{
+            git branch :"${choice}",url:'https://github.com/krishna0852/game-of-life-1.git'
+            }
+        }
+        stage("build"){
+            steps{
+                          
+             bat 'mvn package'
+
+            }
+        }
+    
+    
+       
+    }
+}
+    

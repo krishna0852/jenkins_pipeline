@@ -1,0 +1,21 @@
+pipeline{
+    
+    agent any
+    
+    stages{
+        
+        stage('chechout'){
+            steps{
+                
+              git 'https://github.com/krishna0852/game-of-life-1.git'
+            }
+        }
+        stage('build'){
+            steps{
+                retry(6){
+                bat 'mvn packae'
+                }
+            }
+        }
+    }
+}

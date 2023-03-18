@@ -1,0 +1,25 @@
+pipeline{
+    
+    agent any
+    
+    options{
+        timeout(time: 1, unit:'SECONDS')
+    }
+    
+    stages{
+        
+        stage("checout"){
+            steps{
+                git 'https://github.com/krishna0852/game-of-life-1.git'
+            }
+            
+        }
+        
+        stage('build'){
+            steps{
+                
+                bat 'mvn package'
+            }
+        }
+    }
+}
